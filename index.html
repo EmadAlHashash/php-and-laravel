@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>دليل احتراف PHP & Laravel</title>
+    <!-- تحميل الخطوط والأيقونات -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- القائمة العلوية للموبايل -->
+    <header class="mobile-header">
+        <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="mobile-logo">الدليل الهندسي</div>
+        <div style="width:40px"></div> <!-- للموازنة -->
+    </header>
+
+    <!-- الطبقة الشفافة عند فتح القائمة بالموبايل -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- الشريط الجانبي (Sidebar) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">فهرس المحتويات</h2>
+            <button class="close-sidebar" id="closeSidebar" aria-label="إغلاق القائمة">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">الجزء 1: PHP الأساسية</div>
+                <a href="#php-syntax" class="nav-item">بنية الكود (Syntax)</a>
+                <a href="#php-vars" class="nav-item">المتغيرات والأنواع</a>
+                <a href="#php-arrays" class="nav-item">المصفوفات (Arrays)</a>
+                <a href="#php-ctrl" class="nav-item">الشروط والحلقات</a>
+                <a href="#php-funcs" class="nav-item">الدوال (Functions)</a>
+                <a href="#php-super" class="nav-item">المتغيرات الشاملة</a>
+                <a href="#php-error" class="nav-item">إدارة الأخطاء</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">الجزء 2: PHP المتقدمة</div>
+                <a href="#php-oop" class="nav-item">الكائنات (OOP)</a>
+                <a href="#php-interface" class="nav-item">الواجهات (Interfaces)</a>
+                <a href="#php-traits" class="nav-item">السمات (Traits)</a>
+                <a href="#php-magic" class="nav-item">الدوال السحرية</a>
+                <a href="#php-namespace" class="nav-item">الـ Namespaces</a>
+                <a href="#php-static" class="nav-item">الخصائص الثابتة (Static)</a>
+                <a href="#php-8" class="nav-item">ميزات PHP 8+</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">الجزء 3: أساسيات لارافيل</div>
+                <a href="#lar-intro" class="nav-item">مفهوم Laravel</a>
+                <a href="#lar-mvc" class="nav-item">بنية MVC</a>
+                <a href="#lar-route" class="nav-item">التوجيه (Routing)</a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-wrapper">
+        <main class="container">
+            
+            <header class="hero-section">
+                <h1 class="hero-title">الدليل التفصيلي لاحتراف PHP</h1>
+                <p class="hero-subtitle">مرجع تفصيلي يشرح الأكواد حرفاً بحرف، مصمم للمهندسين ومطورين الواجهات الخلفية (Backend Developers) للتحضير لمقابلات العمل الاحترافية.</p>
+            </header>
+
+            <!-- ============================================== -->
+            <!-- بناء الـ Syntax -->
+            <article class="chapter-card" id="php-syntax">
+                <span class="part-badge">الأساسيات</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-code"></i> بنية الكود (Syntax)</h2>
+                <p class="content-text">لغة PHP تبدأ دائماً بوسم (Tag) محدد لكي يعرف الخادم أن هذا كود برمجي وليس مجرد نصوص HTML عادية.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+    echo "Hello World";
+?&gt;</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">&lt;?php</span>
+                                <div>علامة الفتح. تخبر الخادم (Server) أن ما بعدها هو كود PHP يجب معالجته وتفسيره.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">echo</span>
+                                <div>أمر (Construct) وظيفته الطباعة أو تقديم إخراج (Output) للبيانات لكي يقفز للواجهة.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">"Text"</span>
+                                <div>علامتي التنصيص تحيطان بالنصوص (Strings).</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">;</span>
+                                <div>الفاصلة المنقوطة (Semicolon). تخبر المترجم بانتهاء هذا السطر. بدونها يتوقف التطبيق (Fatal Error).</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- المتغيرات -->
+            <article class="chapter-card" id="php-vars">
+                <span class="part-badge">الأساسيات</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-box-open"></i> المتغيرات والبيانات</h2>
+                <p class="content-text">المتغيرات هي صناديق في الذاكرة نحفظ فيها البيانات مؤقتاً. في PHP لا تحتاج لتعريف نوع المتغير مسبقاً (Dynamically Typed).</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+    $age = 28;
+    $name = "Ahmad";
+    echo $name . " is " . $age;</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">$</span>
+                                <div>علامة الدولار إجبارية. ترشد المترجم أن الكلمة التي تليها هي متغير (Variable).</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">age</span>
+                                <div>اسم المتغير. يُمنع أن يبدأ برقم أو يحتوي مسافات.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">=</span>
+                                <div>معامل التعيين (Assignment). نأخذ القيمة التي على اليمين ونضعها بداخل المتغير الذي على اليسار.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">.</span>
+                                <div>معامل الدمج (Concatenation). يقوم بالصاق النصوص والمتغيرات ببعضها في مخرج واحد.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="qa-container">
+                    <h3 class="qa-title"><i class="fa-solid fa-clipboard-question"></i> سؤال مقابلة</h3>
+                    <div class="qa-item">
+                        <div class="q-text">س: ما الفرق بين <code>==</code> و <code>===</code> في لغة PHP؟</div>
+                        <div class="a-text">ج: المعامل <code>==</code> يقارن <strong>"القيمة" فقط</strong> (يسمى Loose Comparison)، فتقييم <code>"5" == 5</code> يعطي إجابة صحيحة رغم اختلاف النوع. 
+                        أما <code>===</code> فيقارن <strong>القيمة والنوع البياناتي معاً</strong> (Strict Comparison)، وبالتالي <code>"5" === 5</code> هي معادلة خاطئة (False).</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Arrays -->
+            <article class="chapter-card" id="php-arrays">
+                <span class="part-badge">الأساسيات</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-layer-group"></i> المصفوفات (Arrays)</h2>
+                <p class="content-text">المصفوفة هي متغير واحد قادر على تخزين أكثر من قيمة. في PHP نستخدم كثيراً المصفوفات الترابطية (Associative) التي تمتلك "مفاتيح" بدلاً من الأرقام.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+    $user = [
+        "name" => "Ahmad",
+        "role" => "Admin"
+    ];
+    echo $user["name"];</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">[ ]</span>
+                                <div>الأقواس المربعة تُستخدم لإنشاء مصفوفة (الطريقة الحديثة بدلاً من <code>array()</code>).</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">"name"</span>
+                                <div>المفتاح (Key). نستخدم الأسماء بدلاً من الأرقام للوصول للبيانات بسهولة.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">=&gt;</span>
+                                <div>السهم المزدوج. وظيفته الوحيدة هي ربط "المفتاح" بالـ "القيمة" داخل المصفوفة.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">$user["name"]</span>
+                                <div>طريقة استخراج البيانات؛ نقول للمترجم: اذهب للمصفوفة <code>$user</code> وأحضر القيمة المربوطة بالمفتاح <code>"name"</code>.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Control Structures -->
+            <article class="chapter-card" id="php-ctrl">
+                <span class="part-badge">الأساسيات</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-code-branch"></i> الشروط والحلقات (Control)</h2>
+                <p class="content-text">من أهم الحلقات التكرارية في PHP هي <code>foreach</code> المخصصة للمصفوفات، بالإضافة للشروط المنطقية <code>if</code>.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+    foreach ($user as $key => $value) {
+        if ($key === "role") {
+            echo "Role: " . $value;
+        }
+    }</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">foreach</span>
+                                <div>حلقة تكرارية صُممت خصيصاً للمرور على المصفوفات عنصراً عنصراً دون الحاجة لمعرفة عددها.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">as</span>
+                                <div>كلمة محجوزة بمعنى (على هيئة). تخبر المترجم بتفكيك المصفوفة وإعطاء كل عنصر شكل <code>$key =&gt; $value</code>.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">if</span>
+                                <div>تعبير شرطي. ينفذ الكود الذي بداخله فقط إذا كان التقييم بين الأقواس <code>true</code>.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="qa-container">
+                    <h3 class="qa-title"><i class="fa-solid fa-clipboard-question"></i> سؤال مقابلة</h3>
+                    <div class="qa-item">
+                        <div class="q-text">س: ما الفرق بين حلقة <code>for</code> و <code>foreach</code> ولماذا نفضل الأخيرة؟</div>
+                        <div class="a-text">ج: نفضل <code>foreach</code> مع المصفوفات لأننا لا نحتاج لمعرفة طول المصفوفة مسبقاً، وتستطيع استخراج المفاتيح (Keys) النصية بسهولة، بينما حلقة <code>for</code> تتعامل مع الأرقام التتابعية فقط (Indexes).</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Functions -->
+            <article class="chapter-card" id="php-funcs">
+                <span class="part-badge">الأساسيات</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-code"></i> الدوال (Functions)</h2>
+                <p class="content-text">الدوال هي أجزاء من الكود قابلة لإعادة الاستخدام. في PHP الحديثة يتم التركيز بشدة على تحديد أنواع البيانات المُدخلة والمُخرجة (Type Hinting).</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+    function add(int $a, int $b): int {
+        return $a + $b;
+    }
+    echo add(5, 10);</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">function</span>
+                                <div>تعريف بداية الدالة ليتم استدعاؤها لاحقاً.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">int $a</span>
+                                <div>(Type Hinting): نجبر المستخدم على تمرير رقم صحيح <code>int</code> للمتغير <code>$a</code> ولن نقبل نصوصاً!</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">: int</span>
+                                <div>(Return Type): إقرار صريح بأن هذه الدالة يجب أن تٌرجع (Return) رقماً صحيحاً في نهايتها حصراً.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">return</span>
+                                <div>إنهاء الدالة وإرجاع النتيجة. بدونها الدالة ستنفذ العملية ولكنها لن تخرج بشيء يمكن طباعته.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Superglobals -->
+            <article class="chapter-card" id="php-super">
+                <span class="part-badge">الأساسيات</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-globe"></i> المتغيرات الشاملة (Superglobals)</h2>
+                <p class="content-text">هي متغيرات مبنية مسبقاً في لغة PHP تكون متاحة للوصول من <strong>أي مكان</strong> في الكود دون الحاجة لتمريرها. (مثل `$_GET`, `$_POST`, `$_SESSION`).</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+    session_start();
+    $_SESSION["user_id"] = 55;
+    echo $_GET["id"];</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">session_start()</span>
+                                <div>كلمة السر للبدء بمتغيرات الجلسة، يجب أن تكون في بداية الملف.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">$_SESSION</span>
+                                <div>مصفوفة شاملة تحفظ البيانات في جانب الخادم (Server) لكي يتذكر المستخدم عند تنقله بين الصفحات (كالـ Login).</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">$_GET</span>
+                                <div>مصفوفة شاملة تستقبل البيانات الممررة عبر الرابط (URL). مثال لو الرابط <code>?id=10</code> ستطبع رقم 10.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Error Handling -->
+            <article class="chapter-card" id="php-error">
+                <span class="part-badge">الأساسيات</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-bug"></i> إدارة الأخطاء (Exceptions)</h2>
+                <p class="content-text">المهندس الحقيقي لا يترك تطبيقه ينهار فجأة أمام المستخدم، بل يصطاد الخطأ ويعالجه عبر `try` و `catch`.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+    try {
+        if ($divisor == 0) {
+            throw new Exception("Division by zero!");
+        }
+    } catch (Exception $e) {
+        echo $e-&gt;getMessage();
+    }</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">try</span>
+                                <div>كتلة التجربة: اكتب هنا الكود الذي تشك أنه قد يسبب خطأ كارثياً.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">throw new Exception</span>
+                                <div>"إطلاق" الإنذار يدوياً. يتم رمي مجسم من نوع (استثناء) مع رسالة مخصصة.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">catch (Exception $e)</span>
+                                <div>شبكة الاصطياد: إن طار إنذار من <code>try</code>، سيقع فوراً هنا داخل المتغير <code>$e</code> لتطبع رسالته بسلام دون انهيار الموقع.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- OOP -->
+            <article class="chapter-card" id="php-oop">
+                <span class="part-badge">الكود المتقدم</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-cubes"></i> البرمجة الكائنية (OOP)</h2>
+                <p class="content-text">الـ OOP هي تحويل الكود إلى كائنات (Objects) تتفاعل مع بعضها. الكائن يملك خصائص (Properties) ويقوم بأفعال (Methods).</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+class Car {
+    public $color;
+
+    public function __construct($c) {
+        $this->color = $c;
+    }
+
+    public function drive() {
+        return "Driving " . $this->color;
+    }
+}
+
+$myCar = new Car("Red");
+echo $myCar->drive();</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">class Car</span>
+                                <div>نقوم بتعريف القالب أو المخطط للكائن.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">public</span>
+                                <div>صلاحية الوصول؛ تعني أن هذه الخاصية أو الدالة يمكن لأي كود من خارج وداخل الكلاس استخدامها وتعديلها.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">__construct</span>
+                                <div>الدالة البناءة (Magic Method). تُنفذ كودها تلقائياً وفوراً بمجرد إنشاء الكائن دون الحاجة لمناداتها.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">$this-&gt;</span>
+                                <div>تعني (هذا الكائن). وتستخدم حصراً للوصول لخصائص الكائن من داخل الكلاس نفسه. السهم <code>-&gt;</code> مخصص للـ Objects فقط.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">new</span>
+                                <div>الكلمة السحرية التي تحول القالب الجامد (Class) إلى نسخة حقيقية وملموسة بالذاكرة (Object).</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Interfaces -->
+            <article class="chapter-card" id="php-interface">
+                <span class="part-badge">الكود المتقدم</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-file-contract"></i> الواجهات (Interfaces)</h2>
+                <p class="content-text">الواجهة هي "عقد صارم". تجبر الكلاسات التي توافق عليها بأن تقوم بكتابة دوال محددة، ولكن الواجهة نفسها لا تحتوي كود تنفيذي بداخلها.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+interface Logger {
+    public function log($message);
+}
+
+class FileLogger implements Logger {
+    public function log($message) {
+        echo "Saved: " . $message;
+    }
+}</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">interface</span>
+                                <div>إنشاء الواجهة فقط بتعريف "اسم وتوقيع" الدوال، بدون كتابة منطق برمجي بداخلها.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">implements</span>
+                                <div>كلمة التعهد. الكلاس <code>FileLogger</code> يعلن أنه سيلتزم بعقد <code>Logger</code>. لو لم يتم كتابة دالة <code>log()</code> سينهار التطبيق.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="qa-container">
+                    <h3 class="qa-title"><i class="fa-solid fa-clipboard-question"></i> سؤال مقابلة Senior</h3>
+                    <div class="qa-item">
+                        <div class="q-text">س: ما هو الفرق الجوهري بين <code>Interface</code> و <code>Abstract Class</code>؟</div>
+                        <div class="a-text">
+                        ج: 
+                        <br><strong>Interface:</strong> لا يمكنه احتواء منطق منفذ نهائياً. والكلاس يمكنه الالتزام (implement) بعدة Interfaces معاً.<br>
+                        <strong>Abstract Class:</strong> يمكنه احتواء دوال منفذة بالكامل ودوال غير منفذة (Abstract). ولكن الكلاس يتاح له أن يرث (extends) من Abstract واحد فقط كحد أقصى.</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Traits -->
+            <article class="chapter-card" id="php-traits">
+                <span class="part-badge">الكود المتقدم</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-puzzle-piece"></i> السمات (Traits)</h2>
+                <p class="content-text">لأن لغة PHP لا تدعم وراثة أكثر من كلاس (No Multiple Inheritance)، تم ابتكار الـ Traits كي تنسخ وتلصق مجموعة دوال بداخل أي كلاس بسرعة.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+trait HasImage {
+    public function uploadImage() {
+        return "Uploaded";
+    }
+}
+
+class Product {
+    use HasImage;
+}</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">trait</span>
+                                <div>الكلمة المحجوزة لتعريف حزمة الدوال. لا يمكن عمل <code>new</code> من السمة، فهي ليست كلاس.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">use</span>
+                                <div>تُكتب داخل الكلاس لـ (استيراد/حقن) الدوال الموجودة بالسمة كأنها كُتبت بداخل الكلاس حرفياً.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Magic Methods -->
+            <article class="chapter-card" id="php-magic">
+                <span class="part-badge">الكود المتقدم</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-wand-magic-sparkles"></i> الدوال السحرية (Magic Methods)</h2>
+                <p class="content-text">الدوال التي تبدأ بشرطتين سفليتين <code>__</code> وتعمل من تلقاء نفسها عند حدوث حدث معين للمجسم (Object).</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+class User {
+    public function __toString() {
+        return "This is a User Object";
+    }
+}
+$u = new User();
+echo $u;</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">__toString</span>
+                                <div>دالة سحرية تُستدعى تلقائياً إذا حاول المبرمج طباعة المجسم <code>Object</code> مباشرة باستخدام <code>echo</code>.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">echo $u;</span>
+                                <div>في العادة طباعة المجسم مباشرة تعطي خطأ (Fatal Error)، لكن بفضل الدالة السحرية أعلاه سيتم طباعة النص المرجع.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Namespaces -->
+            <article class="chapter-card" id="php-namespace">
+                <span class="part-badge">الكود المتقدم</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-folder-tree"></i> مساحات الأسماء (Namespaces)</h2>
+                <p class="content-text">الـ Namespaces تشبه المجلدات العادية في جهازك. تمنع تضارب أسماء الكلاسات لو أنشأت صفين (Classes) بنفس الاسم في ملفين مختلفين.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+namespace App\Models;
+
+use App\Controllers\UserController;
+
+class User {
+    // ...
+}</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">namespace</span>
+                                <div>تحدد عنوان أو "مجلد وهمي" لهذا الكلاس لتميزه عن غيره. (مثال: هذا مجسم مستخدم خاص بالمودلز وليس لوحة التحكم).</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">App\Models</span>
+                                <div>اسم العنوان. المسار الوهمي يتم كتابته مفصولاً بالشرطة المائلة الخلفية <code>\</code>.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">use</span>
+                                <div>لو أردت استدعاء كلاس من عنوان (Namespace) آخر لداخل كلاسك الحالي، تستخدم كلمة الاستيراد هذه.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Static -->
+            <article class="chapter-card" id="php-static">
+                <span class="part-badge">الكود المتقدم</span>
+                <h2 class="chapter-title"><i class="fa-solid fa-lock"></i> الخصائص والدوال الثابتة (Static)</h2>
+                <p class="content-text">أحياناً لا نحتاج لعمل <code>new</code> من الكلاس لاستدعاء دواله، بل نكلم الكلاس مباشرة. هنا يأتي دور الـ Static.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+class MathHelper {
+    public static $pi = 3.14;
+    
+    public static function square($num) {
+        return $num * $num;
+    }
+}
+echo MathHelper::$pi;
+echo MathHelper::square(4);</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">static</span>
+                                <div>كلمة تُضاف للدالة أو المتغير لجعله "ثابتاً"، أي أنه يعيش بداخل قالب الـ (Class) مباشرة ولا يحتاج إلى نسخة من الكائن (Object).</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">MathHelper::</span>
+                                <div>استدعاء الكلاس مباشرة. علامة <code>::</code> تُستخدم مع المتغيرات والدوال من النوع Static فقط (تغنينا عن استخدام <code>-&gt;</code>).</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- PHP 8+ -->
+            <article class="chapter-card" id="php-8">
+                <span class="part-badge">الكود المتقدم</span>
+                <h2 class="chapter-title"><i class="fa-brands fa-php"></i> ميزات PHP 8 و 8.1</h2>
+                <p class="content-text">كل مهندس يجب أن يعرف المزايا الجديدة للغات البرمجة، في PHP 8 توجد إضافات سحرية قللت من حجم الأكواد وضعفت الأداء.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">&lt;?php
+// Nullsafe Operator
+$country = $user?-&gt;profile?-&gt;country;
+
+// Match Expression
+$status = match($code) {
+    200 =&gt; "OK",
+    404 =&gt; "Not Found",
+    default =&gt; "Unknown Error"
+};</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">?-&gt;</span>
+                                <div>(Nullsafe): إن كان الـ <code>$user</code> يمتلك ملفاً تعريفياً سيجلب البلد، أما إن كان المتغير المعطى <code>null</code> فسيتوقف بأمان ولن ينهار النظام.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">match</span>
+                                <div>النسخة الصارمة والمتطورة من <code>switch</code>. تقوم بإرجاع قيمة مباشرة وتقارن البيانات بصرامة (<code>===</code>).</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">default</span>
+                                <div>القيمة الافتراضية إذا لم يتطابق الرقم المار داخل الـ Match مع أي شيء آخر.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============================================== -->
+            <!-- Laravel MVC -->
+            <article class="chapter-card" id="lar-mvc">
+                <span class="part-badge">أساسيات Laravel</span>
+                <h2 class="chapter-title"><i class="fa-brands fa-laravel" style="color:var(--laravel-color)"></i> بنية MVC والتوجيه</h2>
+                <p class="content-text">الـ Laravel يجعلك تنظم تطبيقك باستخدام نمط MVC (الموديل، الفيو، والكنترولر) مع نظام توجيه ذكي للطلبات.</p>
+
+                <div class="code-wrapper">
+                    <pre><code class="language-php">// routes/web.php
+Route::get('/users', [UserController::class, 'index']);</code></pre>
+                    <div class="explanation-box">
+                        <ul class="explanation-list">
+                            <li class="explanation-item">
+                                <span class="code-chunk">Route::get</span>
+                                <div>استدعاء كلاس الرابط من نوع طلب (GET). استخدام <code>::</code> يسمى بالعربية (محلِّل النطاق) لطلب דوال ثابتة (Static Methods) دون الحاجة لعمل <code>new Route</code>.</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">'/users'</span>
+                                <div>الرابط (URI) الفعلي للمتصفح. مثال: <code>website.com/users</code></div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">UserController::class</span>
+                                <div>الكنترولر (C). هو العقل الذي يستقبل الطلب، يكلم الـ Model لإحضار بيانات المستخدمين، ويمررها للـ View (واجهة الـ HTML).</div>
+                            </li>
+                            <li class="explanation-item">
+                                <span class="code-chunk">'index'</span>
+                                <div>اسم الدالة بداخل الكنترولر التابعة لهذا الراوتر والتي ستعمل خصيصاً في هذه اللحظة لعرض الصفحة.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-php.min.js"></script>
+    
+    <!-- سكريبت التجاوب مع الموبايل -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const overlay = document.getElementById('overlay');
+            const body = document.body;
+            const navItems = document.querySelectorAll('.nav-item');
+
+            function toggleMenu() {
+                body.classList.toggle('sidebar-open');
+            }
+
+            // فتح أو إغلاق القائمة
+            menuToggle.addEventListener('click', toggleMenu);
+            closeSidebar.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+
+            // إغلاق القائمة عند الضغط على أي رابط بداخلها
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth < 1024) {
+                        toggleMenu();
+                    }
+                    
+                    // تحديد العنصر النشط
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
